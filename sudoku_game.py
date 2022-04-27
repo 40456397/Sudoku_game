@@ -117,6 +117,9 @@ def play_game(complete_board,incomplete_board):
             prev_guess = guesses[-1]
             
             print("Your previous guess of {:.0f}, in row {:.0f} and column {:.0f} has been undone.".format(prev_guess,prev_row+1,prev_col+1))
+            interim_time = time.time()
+            current_time = interim_time - start_time
+            print("You have been playing this puzzle for {:.0f} seconds.".format(current_time))   
             incomplete_board[prev_row,prev_col]=0
             print_board(incomplete_board)
             rows.pop()
@@ -131,6 +134,9 @@ def play_game(complete_board,incomplete_board):
                 print(complete_board[row,col])
                 if complete_board[row,col]==guess:
                     print("Your guess was correct. Here is the updated board:\n")
+                    interim_time = time.time()
+                    current_time = interim_time - start_time
+                    print("You have been playing this puzzle for {:.0f} seconds.\n".format(current_time))                   
                     incomplete_board[row,col]=guess
                     print_board(incomplete_board)
                     
@@ -141,10 +147,16 @@ def play_game(complete_board,incomplete_board):
                     correct_guesses+=1
                 else:
                     print("Your guess was incorrect. The board currently looks like this:\n")
+                    interim_time = time.time()
+                    current_time = interim_time - start_time
+                    print("You have been playing this puzzle for {:.0f} seconds.\n".format(current_time))   
                     print_board(incomplete_board)
                     incorrect_guesses+=1
             else:
                 print("That row and column is already filled.\n")
+                interim_time = time.time()
+                current_time = interim_time - start_time
+                print("You have been playing this puzzle for {:.0f} seconds.\n".format(current_time))   
             if np.array_equal(complete_board,incomplete_board):
                 print("Well done! You have solved the Sudoku puzzle.")
                 end_time = time.time()
